@@ -16,4 +16,12 @@ public class Seat {
     private static String toBinaryString(String seatNumber) {
         return seatNumber.replace('B', '1').replace('F', '0').replace('R', '1').replace('L', '0');
     }
+
+    public int getRow() {
+        return seatId >> 3;
+    }
+
+    public int getColumn() {
+        return seatId % 8;
+    }
 }
