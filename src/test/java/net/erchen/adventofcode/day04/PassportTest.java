@@ -2,8 +2,6 @@ package net.erchen.adventofcode.day04;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.Year;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PassportTest {
@@ -15,9 +13,9 @@ class PassportTest {
                 byr:1937 iyr:2017 cid:147 hgt:183cm
                 """);
 
-        assertThat(passport.getBirthYear()).isEqualTo(Year.of(1937));
-        assertThat(passport.getIssueYear()).isEqualTo(Year.of(2017));
-        assertThat(passport.getExpirationYear()).isEqualTo(Year.of(2020));
+        assertThat(passport.getBirthYear()).isEqualTo("1937");
+        assertThat(passport.getIssueYear()).isEqualTo("2017");
+        assertThat(passport.getExpirationYear()).isEqualTo("2020");
         assertThat(passport.getHeight()).isEqualTo("183cm");
         assertThat(passport.getHairColor()).isEqualTo("#fffffd");
         assertThat(passport.getEyeColor()).isEqualTo("gry");

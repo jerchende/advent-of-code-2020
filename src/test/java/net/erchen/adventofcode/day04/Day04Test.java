@@ -48,6 +48,6 @@ class Day04Test {
     void countValidPassesSolutionPart2() throws IOException {
         var validPasses = Day04.countValidPassesPart2(solutionInput());
 
-        assertThat(validPasses).isEqualTo(196);
+        assertThat(validPasses).isEqualTo(114);
     }
 }
