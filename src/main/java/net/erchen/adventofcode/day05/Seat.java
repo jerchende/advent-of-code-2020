@@ -22,6 +22,6 @@ public class Seat {
     }
 
     public int getColumn() {
-        return seatId % 8;
+        return seatId & 7;
     }
 }
