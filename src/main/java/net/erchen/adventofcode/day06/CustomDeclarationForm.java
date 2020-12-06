@@ -12,18 +12,18 @@ import static java.util.stream.Collectors.toSet;
 
 @Data
 @RequiredArgsConstructor
-public class CustomDeclarationFormPart1 {
+public class CustomDeclarationForm {
 
     private final Set<Character> answers;
 
-    public static List<CustomDeclarationFormPart1> parseCustomDeclarationForms(String answers) {
+    public static List<CustomDeclarationForm> parseCustomDeclarationForms(String answers) {
         return Stream.of(answers.split("\n\n"))
-                .map(CustomDeclarationFormPart1::parseCustomDeclarationForm)
+                .map(CustomDeclarationForm::parseCustomDeclarationForm)
                 .collect(toList());
     }
 
-    static CustomDeclarationFormPart1 parseCustomDeclarationForm(String answers) {
-        return new CustomDeclarationFormPart1(normalizeInput(answers).chars().mapToObj(c -> (char) c).collect(toSet()));
+    static CustomDeclarationForm parseCustomDeclarationForm(String answers) {
+        return new CustomDeclarationForm(normalizeInput(answers).chars().mapToObj(c -> (char) c).collect(toSet()));
     }
 
     private static String normalizeInput(String input) {

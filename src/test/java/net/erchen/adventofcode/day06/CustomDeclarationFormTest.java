@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
-import static net.erchen.adventofcode.day06.CustomDeclarationFormPart1.parseCustomDeclarationForm;
-import static net.erchen.adventofcode.day06.CustomDeclarationFormPart1.parseCustomDeclarationForms;
+import static net.erchen.adventofcode.day06.CustomDeclarationForm.parseCustomDeclarationForm;
+import static net.erchen.adventofcode.day06.CustomDeclarationForm.parseCustomDeclarationForms;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CustomDeclarationFormPart1Test {
+class CustomDeclarationFormTest {
 
     @Test
     void singleEntry() {

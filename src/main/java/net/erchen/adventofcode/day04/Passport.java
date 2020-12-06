@@ -2,6 +2,7 @@ package net.erchen.adventofcode.day04;
 
 import lombok.Builder;
 import lombok.Data;
+import net.erchen.adventofcode.common.parser.SeparatorParser;
 import net.erchen.adventofcode.day04.validation.ValidHeight;
 import net.erchen.adventofcode.day04.validation.ValidYear;
 
@@ -11,9 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 @Data
@@ -51,14 +50,12 @@ public class Passport {
 
     private final String countryId;
 
-    public static List<Passport> parsePassports(String scannerOutput) {
-        return Stream.of(scannerOutput.split("\n\n"))
-                .map(Passport::parseSinglePassport)
-                .collect(toList());
+    public static List<Passport> parsePassports(String input) {
+        return SeparatorParser.parseInput(input, "\n\n", Passport::parseSinglePassport);
     }
 
     static Passport parseSinglePassport(String scannerPassportLine) {
-        var entries = readValuesAsMap(new StringTokenizer(normalizeInput(scannerPassportLine), " "));
+        var entries = readValuesAsMap(scannerPassportLine);
 
         return Passport.builder()
                 .birthYear(entries.get("byr"))
@@ -72,13 +69,13 @@ public class Passport {
                 .build();
     }
 
-    private static String normalizeInput(String scannerOutput) {
-        return scannerOutput.replaceAll("\\s+", " ");
-    }
-
-    private static Map<String, String> readValuesAsMap(StringTokenizer input) {
-        return Collections.list(input).stream()
+    private static Map<String, String> readValuesAsMap(String input) {
+        return Collections.list(new StringTokenizer(normalizeInput(input), " ")).stream()
                 .map(entry -> ((String) entry).split(":"))
                 .collect(toMap(part -> part[0], part -> part[1]));
+    }
+
+    private static String normalizeInput(String scannerOutput) {
+        return scannerOutput.replaceAll("\\s+", " ");
     }
 }
