@@ -3,7 +3,6 @@ package net.erchen.adventofcode.day11;
 import lombok.*;
 
 import java.util.List;
-import java.util.function.BiFunction;
 
 import static java.util.Arrays.deepEquals;
 
@@ -46,7 +45,7 @@ public class SeatingSystem {
     }
 
     public void applySeatingRulesUntilChaosIsStabilized() {
-        while (applySeatingRules(this::applySeatingRules)) {
+        while (applySeatingRules()) {
         }
     }
 
@@ -62,12 +61,12 @@ public class SeatingSystem {
         return counter;
     }
 
-    boolean applySeatingRules(BiFunction<Integer, Integer, Character> ruleSet) {
+    boolean applySeatingRules() {
         char[][] newSeats = new char[seats.length][seats[0].length];
 
         for (int y = 0; y < seats.length; y++) {
             for (int x = 0; x < seats[y].length; x++) {
-                newSeats[y][x] = ruleSet.apply(y, x);
+                newSeats[y][x] = applySeatingRules(y, x);
             }
         }
         if (deepEquals(newSeats, seats)) {
