@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
+import static net.erchen.adventofcode.common.MathFunctions.binomialCoefficient;
 
 public class Adapters {
     private final List<Integer> availableAdapters;
@@ -37,13 +38,11 @@ public class Adapters {
     }
 
     public long magicNumberPart2() {
-        return counter.getOneSequencesLengths().stream().filter(i -> i > 1).mapToLong(i -> switch (i) {
-            case 2 -> 2;
-            case 3 -> 4;
-            case 4 -> 7;
-            default -> throw new IllegalArgumentException("will not happen in this example ;)");
-
-        }).reduce((a, b) -> a * b).orElse(0);
+        return counter.getOneSequencesLengths().stream()
+                .filter(i -> i > 1)
+                .mapToLong(i -> binomialCoefficient(i, 2) + 1)
+                .reduce((a, b) -> a * b)
+                .orElse(0);
     }
 
 }
