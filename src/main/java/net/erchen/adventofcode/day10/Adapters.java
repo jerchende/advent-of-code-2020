@@ -39,7 +39,6 @@ public class Adapters {
 
     public long magicNumberPart2() {
         return counter.getOneSequencesLengths().stream()
-                .filter(i -> i > 1)
                 .mapToLong(i -> binomialCoefficient(i, 2) + 1)
                 .reduce((a, b) -> a * b)
                 .orElse(0);
