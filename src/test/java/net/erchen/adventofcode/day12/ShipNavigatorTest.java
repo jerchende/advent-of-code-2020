@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ShipNavigatorTest {
 
-
     static List<String> solutionInput() throws IOException {
         return Files.readAllLines(Path.of("src/test/resources/day12/input.txt"));
     }
