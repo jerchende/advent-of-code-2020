@@ -3,5 +3,5 @@
 
 
 Here are my solutions for the Advent of Code [Advent of Code](https://adventofcode.com/2020).
-Implemented with Java 15 and Junit 5.
+Implemented with Java 15 (with enabled preview features) and Junit 5.
 
