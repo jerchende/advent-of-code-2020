@@ -23,7 +23,6 @@ public class DockingProcessor {
         } else if (command instanceof WriteCommand writeCommand) {
             if (maskAddresses) {
                 LongStream.of(bitMask.applyMaskOnAddress(writeCommand.getAddress())).forEach(address -> this.values.put(address, writeCommand.getValue()));
-                ;
             } else {
                 this.values.put(writeCommand.getAddress(), bitMask.applyMaskOnValue(writeCommand.getValue()));
             }

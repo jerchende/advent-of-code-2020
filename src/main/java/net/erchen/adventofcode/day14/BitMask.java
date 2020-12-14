@@ -43,7 +43,6 @@ public class BitMask {
             if (bitMask.charAt(i) == 'X') {
                 long mask = 1L << (bitMask.length() - 1 - i);
                 masks.addAll(masks.stream().map(m -> m | mask).collect(toList()));
-                masks.add(mask);
             }
         }
         return masks;
