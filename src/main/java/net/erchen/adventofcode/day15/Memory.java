@@ -9,12 +9,14 @@ public class Memory {
         var cache = initCache(init);
 
         int lastNumber = init[init.length - 1];
-        for (int round = init.length; round <= rounds; round++) {
-            int newNumber = lastNumberSpoken(cache, lastNumber, round);
+        int newNumber = 0;
+        for (int round = init.length; round < rounds; round++) {
+            newNumber = lastNumberSpoken(cache, lastNumber, round);
             cache.put(lastNumber, round - 1);
             lastNumber = newNumber;
         }
-        return lastNumber;
+
+        return newNumber;
     }
 
     private static Map<Integer, Integer> initCache(int[] init) {
