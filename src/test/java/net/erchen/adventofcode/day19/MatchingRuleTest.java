@@ -8,14 +8,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class MatchingRuleTest {
 
     @Test
-    void consumeValid() throws NotValidException {
-        assertThat(new MatchingRule('a').consume("a")).isEqualTo("");
-        assertThat(new MatchingRule('a').consume("aa")).isEqualTo("a");
-        assertThat(new MatchingRule('a').consume("aab")).isEqualTo("ab");
+    void consumeValid() throws InvalidException {
+        assertThat(new MatchingRule('a').consume("a")).containsExactly("");
+        assertThat(new MatchingRule('a').consume("aa")).containsExactly("a");
+        assertThat(new MatchingRule('a').consume("aab")).containsExactly("ab");
     }
 
     @Test
     void consumeInvalid() {
-        assertThatThrownBy(() -> new MatchingRule('a').consume("b")).isInstanceOf(NotValidException.class);
+        assertThatThrownBy(() -> new MatchingRule('a').consume("b")).isInstanceOf(InvalidException.class);
     }
 }

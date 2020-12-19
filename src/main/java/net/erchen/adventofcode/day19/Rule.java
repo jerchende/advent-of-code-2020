@@ -1,13 +1,15 @@
 package net.erchen.adventofcode.day19;
 
+import java.util.List;
+
 public interface Rule {
 
-    String consume(String input) throws NotValidException;
+    List<String> consume(String input) throws InvalidException;
 
     default boolean isValid(String input) {
         try {
-            return consume(input).isEmpty();
-        } catch (NotValidException e) {
+            return consume(input).stream().anyMatch(String::isEmpty);
+        } catch (InvalidException e) {
             return false;
         }
     }

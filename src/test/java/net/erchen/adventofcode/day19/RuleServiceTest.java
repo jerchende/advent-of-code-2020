@@ -87,6 +87,6 @@ class RuleServiceTest {
         ruleService.parseRules(solutionInput());
         ruleService.parseRules(part2);
 
-        assertThat(ruleService.validLines(solutionInput())).isEqualTo(126);
+        assertThat(ruleService.validLines(solutionInput())).isEqualTo(282);
     }
 }

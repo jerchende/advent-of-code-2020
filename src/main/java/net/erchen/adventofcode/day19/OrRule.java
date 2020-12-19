@@ -3,6 +3,9 @@ package net.erchen.adventofcode.day19;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Data
 @RequiredArgsConstructor
 public class OrRule implements Rule {
@@ -11,11 +14,21 @@ public class OrRule implements Rule {
     private final Rule rightRule;
 
     @Override
-    public String consume(String input) throws NotValidException {
+    public List<String> consume(String input) throws InvalidException {
+        List<String> matchingReturns = new LinkedList<>();
         try {
-            return leftRule.consume(input);
-        } catch (NotValidException e) {
-            return rightRule.consume(input);
+            matchingReturns.addAll(leftRule.consume(input));
+        } catch (InvalidException e) {
         }
+
+        try {
+            matchingReturns.addAll(rightRule.consume(input));
+        } catch (InvalidException e) {
+        }
+
+        if (matchingReturns.isEmpty()) {
+            throw new InvalidException();
+        }
+        return matchingReturns;
     }
 }
